@@ -10,6 +10,8 @@ Spring Data Jpa - to save entities
 
 Spring Security - for basic authorization and role distribution
 
+Spring MVC - layer architect.
+
 PostgreSQl - as the main database
 
 Freemarker and Bootstrap 4 - as FrontEnd

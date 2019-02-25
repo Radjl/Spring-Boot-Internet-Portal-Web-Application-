@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import repository.UserRepo;
@@ -49,6 +51,16 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+    @GetMapping("/user/delete/{user}")
+    // PathVariable - по переданному айдишнику пользователя находит пользователя в базе данных
+    public String DeleteUser(@PathVariable User user, Model model){
+
+        userRepo.delete(user);
+
+        Iterable<User> userRepoAll = userRepo.findAll();
+        model.addAttribute("users",userRepoAll);
+        return "admin";
+    }
 
 
 

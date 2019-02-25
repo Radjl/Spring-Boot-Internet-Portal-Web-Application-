@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <#include "parts/chronology/chronology.ftl">
-
+<#include "parts/security.ftl">
   <body>
 
 
@@ -55,23 +55,30 @@
                       <button class="btn btn-link dropdown-toggle"   type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-ellipsis-h"></i>
                       </button>
+
                       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+              <#if isAdmin>
                         <div class="h6 dropdown-header">Настройки</div>
                         <a class="dropdown-item" href="#">Изменить фото</a>
                         <a class="dropdown-item" href="#">Изменить название</a>
                         <a class="dropdown-item" href="#">Изменить направление</a>
+              </#if>
                       </div>
                     </div>
                   </div>
                 </div>
+
                 <div class="btn-group">
+                  <#if isAdmin>
                   <div>
                     <form method="post" action="/chronology/delete/${ship.getId()}">
                       <button class="btn btn-danger" type="submit">Удалить судно</button>
                       <input type="hidden" name="_csrf" value="${_csrf.token}">
                     </form>
                   </div>
+                  </#if>
                 </div>
+
               </div>
 
             </div>
@@ -114,6 +121,7 @@
         </form>
 
           <!-- Categories Widget -->
+          <#if isAdmin>
           <div class="card my-4">
             <h5 class="card-header">Меню</h5>
             <div class="card-body">
@@ -148,7 +156,7 @@
               </div>
             </div>
           </div>
-
+          </#if>
           <#if shos??>
           <!-- Side Widget -->
           <div class="card my-4">

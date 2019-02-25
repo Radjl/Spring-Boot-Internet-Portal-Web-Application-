@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <#include "parts/chronology/shipsdetail.ftl">
+<#include "parts/security.ftl">
 <body>
 
 
@@ -45,6 +46,7 @@
         <div class="col-md-6 gedf-main">
 
             <!--- \\\\\\\Post-->
+            <#if isAdmin>
             <div class="card gedf-card">
                 <div class="card-header">
                     <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
@@ -103,7 +105,7 @@
                 </div>
             </div>
             <!-- Post /////-->
-
+            </#if>
 
 
 
@@ -121,12 +123,15 @@
                             </div>
                         </div>
                         <div>
+                            <#if isAdmin>
                             <div class="dropdown">
                                 <button class="btn btn-link dropdown-toggle"   type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa fa-ellipsis-h"></i>
                                 </button>
+
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
                                     <div class="h6 dropdown-header">Настройки</div>
+
                                     <form class="" method="post" action="/chronology/deletemessage/${message.getId()}">
                                         <input type="hidden" name="shipId" value="${ship.getId()}">
                                         <input type="hidden" name="_csrf" value="${_csrf.token}">
@@ -134,7 +139,9 @@
                                     </form>
 
                                 </div>
+
                             </div>
+                            </#if>
                         </div>
                     </div>
 
@@ -148,9 +155,11 @@
                         <input type="hidden" name="messageId" value="${message.getId()}">
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                 </div>
+                <#if isAdmin>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-link"><i class="fa fa-gittip"></i>Сохранить изменения</button>
                 </div>
+                </#if>
                 </form>
             </div>
             </#list>
@@ -169,7 +178,9 @@
                     </div>
                     <!--- \\\\\\\Post <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
                     <form class="" method="post" action="/chronology/deleteimage/${image.getId()}">
+                         <#if isAdmin>
                         <button class="btn btn-danger pull-right"  type="submit">Удалить</button>
+                             </#if>
                         <input type="hidden" name="shipId" value="${ship.getId()}">
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                     </form>

@@ -25,9 +25,7 @@ public class ImageService {
                 shipRepo.save(ship);
             }
         }
-        //   player.setTeam(null);
 
-      //  playerRepository.save(player);
     }
 
 

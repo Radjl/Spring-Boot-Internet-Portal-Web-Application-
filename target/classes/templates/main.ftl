@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <#include "parts/main.ftl">
+<#include "parts/security.ftl">
 <body>
 <!------ Include the above in your HEAD tag
 <h1>Привет , Юзер? )</h1>
@@ -27,9 +28,11 @@
         <li class="nav-list-item">
             <a href="#" class="nav-link">Резерв</a>
         </li>
+        <#if isAdmin>
         <li class="nav-list-item">
             <a href="/admin" class="nav-link">Панель администратора</a>
         </li>
+        </#if>
         <li class="nav-list-item">
             <form action="/logout" method="post">
             <input type="submit" class="btn btn- border-0" value="Выйти">

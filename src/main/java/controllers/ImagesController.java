@@ -53,7 +53,7 @@ public class ImagesController {
             String uuidFile = UUID.randomUUID().toString();
             String result = uuidFile + "." + image.getOriginalFilename();
           //  image.transferTo(new File(uploadPath + "/" + shipfromDb.getShipname() + shipfromDb.getId() + "/" + result));
-            image.transferTo(new File(uploadPath + "/" + result));
+            image.transferTo(new File(uploadPath + "/" +  result));
 
             Images images = new Images();
             images.setImage(result);
@@ -84,6 +84,7 @@ public class ImagesController {
 
 
             imageService.deleteImageFromShip(image.getId(),shipId);
+
             model.addAttribute("ship",shipRepo.findShipsById(shipId));
 
 

@@ -3,10 +3,10 @@
 
 
 
-This is the first version of my Java Spring based test project.
+This is the first version of my Java Spring based project.
 
 Used modules and technologies:
-Spring Data Jpa - to save entities
+Spring Data Jpa - to manage entities
 
 Spring Security - for basic authorization and role distribution
 

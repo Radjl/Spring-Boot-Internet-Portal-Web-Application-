@@ -12,13 +12,18 @@ import java.util.List;
 public interface shipRepo extends JpaRepository<Ship,Long> {
 
     Ship findByShipname(String shipname );
+
     Ship findShipsById (Long id);
+
     Page<Ship> findByShipnameOrDescription(String filter, String desc, Pageable pageable);
 
     List<Ship> findByShipnameOrDescription(String filter, String desc);
 
+    List<Ship> findByShipnameContainsOrDescriptionIsContaining(String filter, String desc);
+
     List<Ship> findAllByOrderByTimeStamp ();
 
     List<Ship> findAllByOrderByIdDesc();
+
 
 }

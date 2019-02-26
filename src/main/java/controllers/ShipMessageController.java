@@ -41,7 +41,7 @@ public class ShipMessageController {
 
             shipMessage message1 = new shipMessage(message,timeStamp);
             message1.setShip(shipfromDb);
-            shipfromDb.getShipmessage().add(message1);
+            shipfromDb.getShipmessage().add(0,message1);
             shipRepo.save(shipfromDb);
 
         Ship ships = shipRepo.findShipsById(shipfromDb.getId());
@@ -74,6 +74,20 @@ public class ShipMessageController {
 
         System.out.println(text);
         shipMessageService.updatemessage(messageId,ship.getId(),text);
+
+
+        model.addAttribute("ship", shipfromDb);
+
+        return "shipsdetail";
+    }
+
+
+    @PostMapping("/chronology/english/{shipMessage}")
+    // PathVariable - по переданному айдишнику пользователя находит пользователя в базе данных
+    public String updateMessage(@PathVariable shipMessage shipMessage, Model model,  @RequestParam("shipId") Long shipId,@RequestParam("englishtext") String text){
+        Ship shipfromDb = shipRepo.findShipsById(shipId);
+
+        shipMessageService.setEnglishText(shipfromDb,shipMessage,text);
 
 
         model.addAttribute("ship", shipfromDb);

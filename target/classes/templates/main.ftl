@@ -19,25 +19,28 @@
 
     </div>
     <ul class="nav-list">
-        <li class="nav-list-item">
-            <a href="#" class="nav-link">Резерв</a>
-        </li>
-        <li class="nav-list-item">
-            <a href="#" class="nav-link">Резерв</a>
-        </li>
-        <li class="nav-list-item">
-            <a href="#" class="nav-link">Резерв</a>
-        </li>
         <#if isAdmin>
+        <li class="nav-list-item">
+            <a href="#" class="nav-link">Резерв</a>
+        </li>
+        <li class="nav-list-item">
+            <a href="#" class="nav-link">Резерв</a>
+        </li>
+        <li class="nav-list-item">
+            <a href="#" class="nav-link">Резерв</a>
+        </li>
+
         <li class="nav-list-item">
             <a href="/admin" class="nav-link">Панель администратора</a>
         </li>
         </#if>
         <li class="nav-list-item">
             <form action="/logout" method="post">
-            <input type="submit" class="btn btn- border-0" value="Выйти">
+            <input type="submit"  class="btn btn-secondary border-0 " value="Выйти">
                 <input type="hidden" name="_csrf" value="${_csrf.token}">
             </form>
+        </li>
+        <li class="nav-list-item">
         </li>
     </ul>
 

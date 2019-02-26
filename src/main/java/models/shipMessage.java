@@ -12,12 +12,25 @@ public class shipMessage {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    public String getEnglishtext() {
+        return englishtext;
+    }
+
+    public void setEnglishtext(String englishtext) {
+        this.englishtext = englishtext;
+    }
 
     private String text;
-
+    private String englishtext = "";
 
     private String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
+    public shipMessage(String text, String englishtext, String timeStamp, Ship ship) {
+        this.text = text;
+        this.englishtext = englishtext;
+        this.timeStamp = timeStamp;
+        this.ship = ship;
+    }
 
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REFRESH)
     @JoinColumn(name = "ship_id", nullable = false)

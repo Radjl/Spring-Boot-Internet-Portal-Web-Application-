@@ -67,7 +67,7 @@
                                 <form method="post" action="/chronology/addMessage/${ship.getId()}" id="addmessageform">
                                     <div class="form-group">
                                     <input type="hidden" name="_csrf" value="${_csrf.token}">
-                                        <textarea class="form-control  "  name="message" rows="3" placeholder="Введите текст..."></textarea>
+                                        <textarea class="form-control  "  name="message" rows="5" placeholder="Введите текст..."></textarea>
                                         </div>
                                 </form>
                             </div>
@@ -155,17 +155,39 @@
                         <input type="hidden" name="messageId" value="${message.getId()}">
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                 </div>
-                <#if isAdmin>
+
                 <div class="card-footer">
+                    <div class="btn-toolbar justify-content-between">
+                        <#if isAdmin>
                     <button type="submit" class="btn btn-link"><i class="fa fa-gittip"></i>Сохранить изменения</button>
+                        </#if>
+                        <button class="btn btn-primary"   type="button" data-target="#target${message.getId()}" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseExample">
+                            Дополнительный текст
+                        </button>
+                    </div>
                 </div>
-                </#if>
                 </form>
+
+                <!-- Дополнительный раскрывающийся английский текст -->
+                <div class="collapse" id="target${message.getId()}">
+                    <form class="" method="post" action="/chronology/english/${message.getId()}">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1"></label>
+                            <textarea class="form-control" name="englishtext" id="exampleFormControlTextarea1"  rows="30">${message.getEnglishtext()}</textarea>
+                        </div>
+                        <input type="hidden" name="shipId" value="${ship.getId()}">
+                        <input type="hidden" name="_csrf" value="${_csrf.token}">
+                <#if isAdmin>
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                </#if>
+                    </form>
+                </div>
+                <!-- Дополнительный раскрывающийся английский текст -->
             </div>
+
+
             </#list>
             <!-- Post /////-->
-
-
         </div>
 
         <div class="col-md-3">

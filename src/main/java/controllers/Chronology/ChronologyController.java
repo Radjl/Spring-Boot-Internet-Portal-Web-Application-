@@ -1,4 +1,4 @@
-package controllers;
+package controllers.Chronology;
 
 
 import models.Ship;
@@ -47,7 +47,7 @@ public class ChronologyController {
 
         /*  Добавляем новое судно и загружаем фото   */
         @PostMapping("/chronology")
-        public String addShip(@RequestParam String shipname, @RequestParam String description, @RequestParam("file") MultipartFile file, Model model) throws IOException {
+        public String addShip(String shipname,String description,MultipartFile file, Model model) throws IOException {
 
         ShipService.addShip(shipname,description,uploadPath,file);
 

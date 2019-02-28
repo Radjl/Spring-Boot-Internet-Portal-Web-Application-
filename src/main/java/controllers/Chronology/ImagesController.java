@@ -1,4 +1,4 @@
-package controllers;
+package controllers.Chronology;
 
 
 import models.Images;
@@ -15,9 +15,7 @@ import repository.ImageRepo;
 import repository.shipRepo;
 import services.ImageService;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
 @Controller
 public class ImagesController {
@@ -40,37 +38,8 @@ public class ImagesController {
 
         Ship shipfromDb = shipRepo.findShipsById(ship.getId());
 
-        if (image !=null){
-            File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()){
-                uploadDir.mkdir();
-            }
-
-
-         //   String result = image.getOriginalFilename();
-
-
-            String uuidFile = UUID.randomUUID().toString();
-            String result = uuidFile + "." + image.getOriginalFilename();
-          //  image.transferTo(new File(uploadPath + "/" + shipfromDb.getShipname() + shipfromDb.getId() + "/" + result));
-            image.transferTo(new File(uploadPath + "/" +  result));
-
-            Images images = new Images();
-            images.setImage(result);
-
-            images.setName(name);
-
-            images.setShip(shipfromDb);
-            shipfromDb.getImages().add(images);
-
-        }
-
-
-
+        imageService.addPhotoToShip(shipfromDb,image,name,uploadPath);
         shipRepo.save(shipfromDb);
-
-
-
         Ship ships = shipRepo.findShipsById(shipfromDb.getId());
         model.addAttribute("ships", ships);
 
@@ -84,7 +53,6 @@ public class ImagesController {
 
 
             imageService.deleteImageFromShip(image.getId(),shipId);
-
             model.addAttribute("ship",shipRepo.findShipsById(shipId));
 
 

@@ -61,10 +61,10 @@
         </li>
         <li>
             <div class="image_title">
-                <a href="https://www.youtube.com/channel/UCXTfDJ60DBmA932Du6B1ydg">Термометрия</a>
+                <a href="/inventory">Инвентаризация</a>
             </div>
-            <a href="https://www.youtube.com/channel/UCXTfDJ60DBmA932Du6B1ydg">
-                <img src="/static/img/sil.jpg"/>
+            <a href="/inventory">
+                <img src="/static/img/invent.jpg"/>
             </a>
         </li>
         <li>

@@ -1,4 +1,4 @@
-package controllers;
+package controllers.Users;
 
 import models.Role;
 import models.User;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import repository.UserRepo;
+import services.UserService;
 
 import java.util.Collections;
 
@@ -20,10 +21,14 @@ public class AdminController {
 
 
     @Autowired
-    UserRepo userRepo;
+    private UserRepo userRepo;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/admin")
     public String main(Model model){
+
         Iterable<User> userRepoAll = userRepo.findAll();
         model.addAttribute("users",userRepoAll);
 
@@ -33,13 +38,13 @@ public class AdminController {
 
     @PostMapping("/register")
     public String addUser(User user, Model model){
-        User userFromDb = userRepo.findByUsername(user.getUsername());
+
+        User userFromDb = userService.addUser(user);
+
             if (userFromDb != null){
                 model.addAttribute("message","Такой пользователь уже существует , введите другое имя!");
-                return "/admin";
+                return "redirect:/admin";
             }
-
-
                 user.setActive(true);
                 user.setRoles(Collections.singleton(Role.USER));
                 userRepo.save(user);

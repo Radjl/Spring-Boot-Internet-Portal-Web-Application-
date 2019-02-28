@@ -71,10 +71,33 @@
                 <div class="btn-group">
                   <#if isAdmin>
                   <div>
-                    <form method="post" action="/chronology/delete/${ship.getId()}">
-                      <button class="btn btn-danger" type="submit">Удалить судно</button>
-                      <input type="hidden" name="_csrf" value="${_csrf.token}">
-                    </form>
+
+                    <!-- Вызов модального окна-->
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#deleteship" >Удалить судно</button>
+
+                    <!-- Модальное окно удаления  -->
+                    <div class="modal fade" id="deleteship" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+
+                        <div class="modal-dialog vertical-align-center">
+                          <div class="modal-content">
+
+                            <div class="modal-body text-center font-weight-bold">Вы уверены ?</div>
+                            <div class="modal-footer">
+                              <form method="post" action="/chronology/delete/${ship.getId()}">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                                <button class="btn btn-danger" type="submit">Удалить судно</button>
+                                <input type="hidden" name="_csrf" value="${_csrf.token}">
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Modal -->
+
+
                   </div>
                   </#if>
                 </div>

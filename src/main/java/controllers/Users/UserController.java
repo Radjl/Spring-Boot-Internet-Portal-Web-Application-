@@ -1,4 +1,4 @@
-package controllers;
+package controllers.Users;
 
 
 import models.Role;
@@ -9,11 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import repository.UserRepo;
+import services.UserService;
 
-import java.util.Arrays;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
@@ -21,7 +19,10 @@ import java.util.stream.Collectors;
 public class UserController {
 
     @Autowired
-    UserRepo userRepo;
+    private UserRepo userRepo;
+
+    @Autowired
+    private UserService userService;
 
 
     @GetMapping("{user}")
@@ -40,24 +41,14 @@ public class UserController {
 
         User usreFromDb = userRepo.findUserById(user.getId());
         if (usreFromDb != null){
-            usreFromDb.setUsername(username);
+            userService.updateUserName(usreFromDb,username,form);
 
-            Set<String> roles = Arrays.stream(Role.values()).map(Role::name).collect(Collectors.toSet());
-
-            usreFromDb.getRoles().clear();
-            for (String key: form.keySet()
-                 ) {
-                if (roles.contains(key)){
-                    usreFromDb.getRoles().add(Role.valueOf(key));
-                }
-
-            }
-
-            userRepo.save(usreFromDb);
             model.addAttribute("user",usreFromDb);
             model.addAttribute("roles", Role.values());
             return "userEdit";
         }
+
+
         model.addAttribute("user",usreFromDb);
         model.addAttribute("roles", Role.values());
         return "userEdit";

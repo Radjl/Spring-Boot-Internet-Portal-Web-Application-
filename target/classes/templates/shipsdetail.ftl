@@ -193,7 +193,7 @@
         <div class="col-md-3">
             <#list ship.images as image>
             <div class="card gedf-card">
-                <img class="card-img-top" src="/img/${image.image}" height="250" alt="Card image cap">
+                <img class="card-img-top" src="/img/ship/${image.image}" height="250" alt="Card image cap">
                 <div class="card-body">
                     <div>
                     <h5 class="card-title">${image.name}</h5>

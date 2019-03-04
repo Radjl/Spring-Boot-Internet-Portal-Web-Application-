@@ -25,7 +25,7 @@ public class ChronologyController {
     @Autowired
     private ShipService ShipService;
 
-    @Value("${upload.path}")
+    @Value("${upload.pathship}")
     private String uploadPath;
 
 
@@ -37,6 +37,10 @@ public class ChronologyController {
         public String main(Model model){
 
         Iterable<Ship> ships = shipRepo.findAllByOrderByIdDesc();
+
+
+
+
         model.addAttribute("ships",ships);
         return "shipshome";
     }
@@ -48,6 +52,9 @@ public class ChronologyController {
         /*  Добавляем новое судно и загружаем фото   */
         @PostMapping("/chronology")
         public String addShip(String shipname,String description,MultipartFile file, Model model) throws IOException {
+
+
+
 
         ShipService.addShip(shipname,description,uploadPath,file);
 

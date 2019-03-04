@@ -9,10 +9,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
-        @Value("${upload.path}")
-        private String uploadPath;
+        @Value("${upload.pathship}")
+        private String uploadPathSHip;
 
-
+        @Value("${upload.pathinventory}")
+        private String uploadPathInventory;
 
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
@@ -21,7 +22,12 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
-        registry.addResourceHandler("/img/**")
-                .addResourceLocations("file:///" + uploadPath + "/");
+        registry.addResourceHandler("/img/ship/**")
+                .addResourceLocations("file:///" + uploadPathSHip + "/");
+        registry.addResourceHandler("/img/it/**")
+                .addResourceLocations("file:///" + uploadPathInventory + "/");
+
+
+
     }
 }

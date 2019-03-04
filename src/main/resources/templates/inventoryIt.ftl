@@ -2,6 +2,7 @@
 <html lang="en">
 <#include "parts/inventory/inventorymain.ftl">
 <#include "parts/security.ftl">
+
 <body>
 <#include "parts/inventory/navbar.ftl">
 
@@ -41,9 +42,72 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-sm" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil">Открыть</span></button></p></td>
+                        <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-sm" data-title="Edit"  data-toggle="modal" data-target="#modal${item.getId()}" ><span class="glyphicon glyphicon-pencil">Открыть</span></button></p></td>
                         <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-sm identifyingClass"   data-id="${item.getId()}"  data-toggle="modal" data-target="#my_modal" ><span class="glyphicon glyphicon-trash">Удалить</span></button></p></td>
                     </tr>
+
+                        <!-- детальное отображение одной позиции  -->
+                        <div class="modal fade " id="modal${item.getId()}" tabindex="-1" role="dialog" aria-labelledby="my_modalLabel">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+
+                                <div class="modal-dialog vertical-align-center">
+                                    <div class="modal-content">
+
+
+                                        <div class="card text-center">
+                                            <#if item.img??>
+                                            <img class="card-img-top" src="/img/it/${item.getImg()}" alt="Card image cap">
+                                                <#else>
+                                                    <img class="card-img-top" src="https://picsum.photos/1900/1080?image=235" alt="Card image cap">
+                                            </#if>
+                                            <div class="card-body">
+                                                <h5 class="card-title">${item.getName()}</h5>
+                                                <hr>
+                                                <p class="card-text">Неисправности: - </p>
+                                                <p>
+                                                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                    Детально
+                                                    </a>
+                                                </p>
+                                                <div class="collapse" id="collapseExample">
+                                                    <div class="card card-body">
+                                                        <ul class="list-group list-group-flush">
+                                                            <li class="list-group-item">Тест</li>
+                                                            <li class="list-group-item">Тест</li>
+                                                            <li class="list-group-item">Тест</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <a class="btn-sm btn-info" data-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                            Обслуживание
+                                                        </a>
+                                                    </div>
+                                                    <div class="col">
+                                                        <a class="btn-sm btn-info" data-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                            Ремонт
+                                                        </a>
+                                                    </div>
+                                                    <div class="col">
+                                                        <a class="btn-sm btn-info" data-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                            Поставщик
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </#list>
                     </tbody>
 
@@ -112,7 +176,6 @@
         </div>
         </div>
     </div>
-
 
 
 

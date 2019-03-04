@@ -19,6 +19,11 @@ public class ItemIt {
         this.name = name;
     }
 
+
+
+
+
+    private boolean broken = false;
     private String name;
     private int srokEkspluatacii;
     private Date VvodEkspluatacii;
@@ -27,13 +32,33 @@ public class ItemIt {
     private String dislocation;
 
 
-    public ItemIt(String name, int srokEkspluatacii, Date vvodEkspluatacii, int inventoryNumber, int serialNumber, String dislocation) {
+    private String img;
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public boolean isBroken() {
+        return broken;
+    }
+
+    public void setBroken(boolean broken) {
+        this.broken = broken;
+    }
+
+    public ItemIt(boolean broken, String name, int srokEkspluatacii, Date vvodEkspluatacii, int inventoryNumber, int serialNumber, String dislocation, String img) {
+        this.broken = broken;
         this.name = name;
         this.srokEkspluatacii = srokEkspluatacii;
         VvodEkspluatacii = vvodEkspluatacii;
         this.inventoryNumber = inventoryNumber;
         this.serialNumber = serialNumber;
         this.dislocation = dislocation;
+        this.img = img;
     }
 
     public ItemIt() {

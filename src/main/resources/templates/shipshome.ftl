@@ -40,7 +40,7 @@
             <#list ships as ship>
           <div class="card mb-4">
          <#if ship.img?? >
-             <img class="card-img-top" src="/img/${ship.img}" height="400" alt="Card image cap">
+             <img class="card-img-top" src="/img/ship/${ship.img}" height="400" alt="Card image cap">
               <#else>
                   <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
          </#if>

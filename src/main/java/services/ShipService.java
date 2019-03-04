@@ -23,7 +23,12 @@ public class ShipService {
 
 
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        Ship ship = new Ship(timeStamp,shipname,description);
+        Ship ship = new Ship();
+
+        ship.setShipname(shipname);
+        ship.setDescription(description);
+        ship.setTimeStamp(timeStamp);
+
 
 
 

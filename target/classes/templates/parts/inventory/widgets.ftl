@@ -26,10 +26,12 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header  text-primary align-self-center">
-                <h4 class="modal-title">Добавление судна</h4></div>
+                <h4 class="modal-title">Новая запись</h4></div>
             <div class="modal-body">
                 <form method="post" action="/inventory/it" enctype="multipart/form-data" id="myform">
-                    <div class="form-group text-center text-primary"><label>Название судна</label><input class="form-control" name="name" type="text"></div>
+                    <div class="form-group text-center text-primary"><label>Наименование</label><textarea class="form-control" name="name" rows="2"></textarea></div>
+                    <div class="form-group text-center"><label class="text-primary">Фото позиции</label></div>
+                    <div class="form-group text-center text-primary"><input class="shadow-sm" name="file" type="file"></div>
                     <input type="hidden" name="_csrf" value="${_csrf.token}">
                 </form>
             </div>

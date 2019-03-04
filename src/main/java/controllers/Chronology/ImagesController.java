@@ -25,7 +25,7 @@ public class ImagesController {
 
     @Autowired ImageRepo imageRepo;
 
-    @Value("${upload.path}")
+    @Value("${upload.pathship}")
     private String uploadPath;
 
     @Autowired

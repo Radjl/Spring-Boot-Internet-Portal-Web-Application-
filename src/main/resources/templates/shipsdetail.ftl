@@ -64,7 +64,7 @@
                         <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                             <div class="form-group">
                                 <label class="sr-only" for="message">post</label>
-                                <form method="post" action="/chronology/addMessage/${ship.getId()}" id="addmessageform">
+                                <form method="post" action="/chronology/addMessage/${ship.getId()?c}" id="addmessageform">
                                     <div class="form-group">
                                     <input type="hidden" name="_csrf" value="${_csrf.token}">
                                         <textarea class="form-control  "  name="message" rows="5" placeholder="Введите текст..."></textarea>
@@ -79,7 +79,7 @@
                         <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
                             <div class="form-group">
                                 <div class="custom-file">
-                                    <form method="post" action="/chronology/addPhoto/${ship.getId()}" enctype="multipart/form-data" id="addcommentform">
+                                    <form method="post" action="/chronology/addPhoto/${ship.getId()?c}" enctype="multipart/form-data" id="addcommentform">
                                     <input type="file" name="image" class="custom-file-input mt-1" id="customFile">
                                     <label class="custom-file-label" for="customFile">Загрузить фото</label>
                                     <input class="form-control" type="text" name="name" id="photocomment" placeholder="Комментарий к фото">
@@ -132,8 +132,8 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
                                     <div class="h6 dropdown-header">Настройки</div>
 
-                                    <form class="" method="post" action="/chronology/deletemessage/${message.getId()}">
-                                        <input type="hidden" name="shipId" value="${ship.getId()}">
+                                    <form class="" method="post" action="/chronology/deletemessage/${message.getId()?c}">
+                                        <input type="hidden" name="shipId" value="${ship.getId()?c}">
                                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                                         <button type="submit" class="dropdown-item btn btn-link">Удалить</button>
                                     </form>
@@ -146,13 +146,13 @@
                     </div>
 
                 </div>
-                <form method="post" action="/chronology/editmessage/${ship.getId()}">
+                <form method="post" action="/chronology/editmessage/${ship.getId()?c}">
                 <div class="card-body">
                     <!--- \\\\\\\ <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>Время публикации</div>  -->
                     <a class="card-link" href="#">
                     </a>
                         <textarea class="form-control airmode" name="message1" rows="5" placeholder="">${message.getText()}</textarea>
-                        <input type="hidden" name="messageId" value="${message.getId()}">
+                        <input type="hidden" name="messageId" value="${message.getId()?c}">
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                 </div>
 
@@ -161,7 +161,7 @@
                         <#if isAdmin>
                     <button type="submit" class="btn btn-link"><i class="fa fa-gittip"></i>Сохранить изменения</button>
                         </#if>
-                        <button class="btn btn-primary"   type="button" data-target="#target${message.getId()}" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseExample">
+                        <button class="btn btn-primary"   type="button" data-target="#target${message.getId()?c}" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseExample">
                             Дополнительный текст
                         </button>
                     </div>
@@ -175,7 +175,7 @@
                             <label for="exampleFormControlTextarea1"></label>
                             <textarea class="form-control" name="englishtext" id="exampleFormControlTextarea1"  rows="30">${message.getEnglishtext()}</textarea>
                         </div>
-                        <input type="hidden" name="shipId" value="${ship.getId()}">
+                        <input type="hidden" name="shipId" value="${ship.getId()?c}">
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                 <#if isAdmin>
                         <button type="submit" class="btn btn-primary">Сохранить</button>
@@ -199,11 +199,11 @@
                     <h5 class="card-title">${image.name}</h5>
                     </div>
                     <!--- \\\\\\\Post <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
-                    <form class="" method="post" action="/chronology/deleteimage/${image.getId()}">
+                    <form class="" method="post" action="/chronology/deleteimage/${image.getId()?c}">
                          <#if isAdmin>
                         <button class="btn btn-danger pull-right"  type="submit">Удалить</button>
                              </#if>
-                        <input type="hidden" name="shipId" value="${ship.getId()}">
+                        <input type="hidden" name="shipId" value="${ship.getId()?c}">
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                     </form>
                 </div>

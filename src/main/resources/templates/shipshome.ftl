@@ -49,7 +49,7 @@
               <p class="card-text"><i>Направление судна: </i>${ship.description}</p>
               <div class="btn-toolbar justify-content-between">
                 <div class="btn-group">
-                  <a href="/chronology/${ship.getId()}" class="btn btn-primary">Подробнее &rarr;</a>
+                  <a href="/chronology/${ship.getId()?c}" class="btn btn-primary">Подробнее &rarr;</a>
                   <div>
                     <div class="dropdown">
                       <button class="btn btn-link dropdown-toggle"   type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -85,7 +85,7 @@
 
                             <div class="modal-body text-center font-weight-bold">Вы уверены ?</div>
                             <div class="modal-footer">
-                              <form method="post" action="/chronology/delete/${ship.getId()}">
+                              <form method="post" action="/chronology/delete/${ship.getId()?c}">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
                                 <button class="btn btn-danger" type="submit">Удалить судно</button>
                                 <input type="hidden" name="_csrf" value="${_csrf.token}">

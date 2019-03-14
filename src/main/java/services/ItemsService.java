@@ -3,12 +3,15 @@ package services;
 
 import models.ItemIt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import repository.InventoryItRepo;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 @Service
@@ -17,6 +20,8 @@ public class ItemsService {
     private InventoryItRepo inventoryIt;
 
 
+    @Value("${upload.pathinventory}")
+    private String uploadPath;
 
     public Iterable<ItemIt> findall() {
 
@@ -24,12 +29,21 @@ public class ItemsService {
 
     }
 
-    public void addItem(String name, MultipartFile file, String uploadPath) throws IOException {
-        ItemIt itemIt = new ItemIt(name);
+    public void addItem(String name, MultipartFile file, String uploadPath, int usefulllife, String date, String invent, String serial , String dislocation) throws IOException, ParseException {
+        ItemIt itemIt = new ItemIt();
+        itemIt.setName(name);
+        itemIt.setSrokEkspluatacii(usefulllife);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        itemIt.setVvodEkspluatacii(sdf.parse(date));
+        itemIt.setInventoryNumber(invent);
+        itemIt.setSerialNumber(serial);
+        itemIt.setDislocation(dislocation);
 
 
-       // String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-       // Ship ship = new Ship(timeStamp,shipname,description);
+
+
+
 
         if (file !=null){
             File uploadDir = new File(uploadPath);
@@ -52,11 +66,49 @@ public class ItemsService {
 
 
 
-    public void deleteItemById(String id) {
+    public void deleteItemById(int id) {
 
-        Long id2 = Long.valueOf(id);
-        inventoryIt.deleteById(id2);
 
+        inventoryIt.deleteById((long) id);
+
+
+
+    }
+
+    public void updateDeatil(Boolean checkbox, ItemIt itemIt,String first,String second,String third, MultipartFile file) throws IOException {
+
+        ItemIt item = inventoryIt.findItemItById(itemIt.getId());
+
+
+
+        if (checkbox){
+            item.setBroken(true);
+        }else
+            item.setBroken(false);
+
+        if (first!=null){
+            item.setFirstBroke(first);
+        }
+
+        if (second!=null){
+            item.setSecondBroke(second);
+        }
+
+        if (third!=null){
+            item.setThirdBroke(third);
+        }
+
+       if (!file.isEmpty()){
+           String uuidFile = UUID.randomUUID().toString();
+           String result = uuidFile + "." + file.getOriginalFilename();
+
+           file.transferTo(new File(uploadPath + "/" + result));
+           item.setImg(result);
+       }
+
+
+
+        inventoryIt.save(item);
 
 
     }

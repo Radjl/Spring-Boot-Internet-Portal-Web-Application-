@@ -1,6 +1,8 @@
 package models;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,15 +22,43 @@ public class ItemIt {
     }
 
 
+    private String firstBroke;
+    private String secondBroke;
+    private String thirdBroke;
 
+    public String getFirstBroke() {
+        return firstBroke;
+    }
 
+    public void setFirstBroke(String firstBroke) {
+        this.firstBroke = firstBroke;
+    }
+
+    public String getSecondBroke() {
+        return secondBroke;
+    }
+
+    public void setSecondBroke(String secondBroke) {
+        this.secondBroke = secondBroke;
+    }
+
+    public String getThirdBroke() {
+        return thirdBroke;
+    }
+
+    public void setThirdBroke(String thirdBroke) {
+        this.thirdBroke = thirdBroke;
+    }
 
     private boolean broken = false;
     private String name;
     private int srokEkspluatacii;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date VvodEkspluatacii;
-    private int inventoryNumber;
-    private int serialNumber;
+
+    private String  inventoryNumber;
+    private String serialNumber;
     private String dislocation;
 
 
@@ -50,7 +80,21 @@ public class ItemIt {
         this.broken = broken;
     }
 
-    public ItemIt(boolean broken, String name, int srokEkspluatacii, Date vvodEkspluatacii, int inventoryNumber, int serialNumber, String dislocation, String img) {
+    public ItemIt(boolean broken, String name, int srokEkspluatacii, Date vvodEkspluatacii, String inventoryNumber, String serialNumber, String dislocation, String img) {
+        this.broken = broken;
+        this.name = name;
+        this.srokEkspluatacii = srokEkspluatacii;
+        VvodEkspluatacii = vvodEkspluatacii;
+        this.inventoryNumber = inventoryNumber;
+        this.serialNumber = serialNumber;
+        this.dislocation = dislocation;
+        this.img = img;
+    }
+
+    public ItemIt(String firstBroke, String secondBroke, String thirdBroke, boolean broken, String name, int srokEkspluatacii, Date vvodEkspluatacii, String inventoryNumber, String serialNumber, String dislocation, String img) {
+        this.firstBroke = firstBroke;
+        this.secondBroke = secondBroke;
+        this.thirdBroke = thirdBroke;
         this.broken = broken;
         this.name = name;
         this.srokEkspluatacii = srokEkspluatacii;
@@ -96,19 +140,19 @@ public class ItemIt {
         VvodEkspluatacii = vvodEkspluatacii;
     }
 
-    public int getInventoryNumber() {
+    public String getInventoryNumber() {
         return inventoryNumber;
     }
 
-    public void setInventoryNumber(int inventoryNumber) {
+    public void setInventoryNumber(String inventoryNumber) {
         this.inventoryNumber = inventoryNumber;
     }
 
-    public int getSerialNumber() {
+    public String getSerialNumber() {
         return serialNumber;
     }
 
-    public void setSerialNumber(int serialNumber) {
+    public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
     }
 

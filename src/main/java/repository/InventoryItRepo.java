@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InventoryItRepo extends JpaRepository <ItemIt,Long> {
 
-
+    ItemIt findItemItById (Long id);
 
 
 }

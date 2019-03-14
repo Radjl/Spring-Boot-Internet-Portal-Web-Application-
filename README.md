@@ -12,6 +12,8 @@ Spring Data Jpa - to manage entities
 
 Spring Security - for basic authorization and role distribution
 
+Spring Boot / DevTools
+
 Spring MVC.
 
 PostgreSQl - as the main database

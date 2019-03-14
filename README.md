@@ -18,5 +18,7 @@ PostgreSQl - as the main database
 
 Freemarker and Bootstrap 4 - as FrontEnd
 
+Javascript and css.
+
 Данное приложение является демонстрацией моих навыков и разрабатывается в процессе обучения Spring framework.
 
